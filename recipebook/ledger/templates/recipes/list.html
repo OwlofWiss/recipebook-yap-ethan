@@ -29,31 +29,23 @@
 
   <h2>{{ recipe.name }}</h2>
 
-  <ul>
-    {% for item in recipe.ingredients %}
+ <ul>
+    {% for ri in recipe.recipe_ingredients.all %}
       <li>
-        {{ item.name }} -
-
-        {% if item.quantity %}
-          {{ item.quantity }}
-        {% elif item.quanity %}
-          {{ item.quanity }}
-        {% endif %}
-
+        {{ ri.ingredient.name }} — {{ ri.quantity }}
       </li>
+    {% empty %}
+      <li>No ingredients yet.</li>
     {% endfor %}
   </ul>
 
-
-    <a href="{{ recipe.link }}">
+  <a href="{{ recipe.get_absolute_url }}">
      View {{ recipe.name }}
-    </a>
+  </a>
 
   <hr>
 
 {% endfor %}
 
-
 </body>
 </html>
-
