@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Book</title>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="background:#f4a261;padding:20px;text-align:center;">
+    <h1>Recipe Book</h1>
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</div>
+
+<!-- PAGE TITLE -->
+<h2>{{ page_title }}</h2>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
