@@ -1,41 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ recipe.name }}</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<div style="
-    width:100%;
-    background-color:#f4a261;
-    padding:20px;
-    text-align:center;
-    border-bottom:4px solid #333;
-">
-    <h1 style="
-        margin:0;
-        font-size:40px;
-        letter-spacing:3px;
-        font-family:Arial, sans-serif;
-        color:white;
-    ">
-        RECIPE BOOK
-    </h1>
-</div>
+{% block content %}
 
-<h1>{{ recipe.name }} Ingredients</h1>
+<p><strong>Author:</strong> {{ recipe.author.name }}</p>
+<p><strong>Created:</strong> {{ recipe.created_on }}</p>
+<p><strong>Updated:</strong> {{ recipe.updated_on }}</p>
 
 <ul>
-  {% for ri in recipe.recipe_ingredients.all %}
-    <li>
-      {{ ri.ingredient.name }} — {{ ri.quantity }}
-    </li>
-  {% empty %}
-    <li>No ingredients listed.</li>
-  {% endfor %}
+{% for ri in recipe.recipe_ingredients.all %}
+    <li>{{ ri.ingredient.name }} — {{ ri.quantity }}</li>
+{% endfor %}
 </ul>
 
-<a href="{% url 'recipe_list' %}">Back to Recipe List</a>
+{% endblock %}
 
-</body>
-</html>
