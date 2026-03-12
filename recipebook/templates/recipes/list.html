@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block content %}
     <h1>Recipe List</h1>
     {% if user.is_authenticated %}
@@ -6,7 +7,10 @@
     {% endif %}
     <ul>
         {% for recipe in recipes %}
-            <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></li>
+            <li>
+                <a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a> 
+                by {{ recipe.author.name }}
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
