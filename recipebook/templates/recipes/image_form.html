@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Add Image for {{ recipe.name }}</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Image</button>
+    </form>
+
+    <hr>
+    <!-- Bonus: Redirect back to the correct recipe page -->
+    <p><a href="{% url 'recipe_detail' recipe.pk %}">Cancel and Return to Recipe</a></p>
+{% endblock %}

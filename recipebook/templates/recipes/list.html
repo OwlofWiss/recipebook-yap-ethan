@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Recipe List</h1>
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'recipe_add' %}">+ Create New Recipe</a></p>
+    {% endif %}
+    <ul>
+        {% for recipe in recipes %}
+            <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
